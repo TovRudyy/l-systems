@@ -1,0 +1,11 @@
+{
+  "alfabet": [
+    "a",
+    "b"
+  ],
+  "reglesp": {
+    "a": "ab",
+    "b": "a"
+  },
+  "axioma": "ab"
+}

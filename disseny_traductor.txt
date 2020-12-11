@@ -1,0 +1,97 @@
+Entrades:
+    - l-system.json: Fitxer JSON on s'especifiqui:
+        a)"alfabet": Alfabet (amb una llista)
+        b)"reglesp": Regles de producció (amb un diccionari)
+        c)"axioma": Axioma (amb un string)
+
+    - N: el número d'iteracions a executar sobre l'axioma (número enter positiu (0, +inf))
+        Ho pot introduir l'usuari durant l'execució del programa
+
+Sortides:
+    - La sentencia resultant d'executar el L-system especificat N iteracions
+
+Funcionament:
+    El programa executarà N iteracions. Té per entrades:
+        -L'axioma de la iteració anterior. Si és la 1a iteració, l'axioma és l'axioma inicial.
+    Dintre de cada iteració, el programa processarà cada caràcter de l'axioma i generarà la traducció des
+    de 0 (string buit "") mitjançant les regles de producció.
+
+EXEMPLE 1:
+l-system.json:
+{
+  "alfabet": [
+    "a",
+    "b"
+  ],
+  "reglesp": {
+    "a": "ab",
+    "b": "a"
+  },
+  "axioma": "ab"
+}
+
+N = 5
+
+Sortida:
+abaababaabaababaababa
+
+EXEMPLE 2:
+{
+  "alfabet": [
+    "a",
+    "b"
+  ],
+  "reglesp": {
+    "a": "ab",
+    "b": "a"
+  },
+  "axioma": "ab"
+}
+
+N = 0
+
+Sortida:
+ab
+
+EXEMPLE 3:
+l-system.json:
+{
+  "alfabet": [
+    "F",
+    "f",
+    "+",
+    "-"
+  ],
+  "reglesp": {
+    "F": "F-f",
+    "f": "f+F"
+  },
+  "axioma": "F"
+}
+
+N=4
+
+Sortida:
+F-f-f+F-f+F+F-f-f+F+F-f+F-f-f+F
+
+EXEMPLE 4:
+l-system.json:
+{
+  "alfabet": [
+    "a",
+    "b",
+    "c",
+    "d"
+  ],
+  "reglesp": {
+    "a": "ba",
+    "b": "ac",
+    "c": "d"
+  },
+  "axioma": "ac"
+}
+
+N=3
+
+Sortida:
+badacbad
