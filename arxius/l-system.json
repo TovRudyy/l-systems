@@ -1,14 +1,32 @@
 {
   "alfabet": [
-    "a",
-    "b",
-    "c",
-    "d"
+    "F",
+    "G",
+    "+",
+    "-",
+    "[",
+    "]"
   ],
   "reglesp": {
-    "a": "ba",
-    "b": "ac",
-    "c": "d"
+    "F": "F-F++F-F"
   },
-  "axioma": "ac"
+  "axioma": "F++F++F",
+  "turtleconf": {
+    "pensize": 5,
+    "width": 3,
+    "pencolor": "black",
+    "heading": 90,
+    "mdistance": 10,
+    "mrotation": 60,
+    "speed": 0,
+    "hideturtle": 1,
+    "dictionary": {
+      "F": "linia",
+      "G": "nlinia",
+      "+": "rot+",
+      "-": "rot-",
+      "[": "recorda pos",
+      "]": "restaura pos"
+    }
+  }
 }

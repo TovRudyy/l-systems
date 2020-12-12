@@ -1,5 +1,6 @@
 import os, sys
 import json
+from tortuga import tortuga
 
 # Variables globals constants
 FILESDIR = "arxius"
@@ -39,6 +40,11 @@ def json_to_variable(fpath):
           f"[DEBUG]: {jsondata}")
     return jsondata
 
+"""
+Demana a l'usuari introduir el nombre d'iteracions a executar
+en el L-System. Comprova que la dada introduida es valida.
+return: enter
+"""
 def read_input():
     idata = {"N": int}
 
@@ -47,30 +53,29 @@ def read_input():
         N = int(N)
     except:
         print(f"[ERROR]: El nombre d'iteracions ha de ser un numero enter. "
-              f"Nombre introduit: {N}")
+              f"[ERROR]: Nombre introduit: {N}")
         sys.exit(-1)
 
     idata["N"] = N
 
     return idata
 
-if __name__ == '__main__':
-    create_dir(FILESDIR)
-    l_system = json_to_variable(FILESDIR + "/" + JSONFILE)
-    idata = read_input()
-
-    sentence = None
-    axioma = l_system["axioma"]
-    alfabet = l_system["alfabet"]
-    N = idata["N"]
-
-    reglesp = l_system["reglesp"]
+"""
+Executa un L-system amb $axioma com a axioma inicial, $reglesp com regles de
+producció i $N com el nombre d'iteracion. Retorna la sentencia L-System resultant.
+$axioma: string
+$reglesp: diccionari
+$N: enter
+return: string
+"""
+def generador(axioma, reglesp, N):
     print(f"{HLINE}\n"
           f"[DEBUG]: INICIANT TRADUCCIO\n"
           f"[DEBUG]: Iteracions: {N}\n"
           f"[DEBUG]: Alfabet: {alfabet}\n"
           f"[DEBUG]: Regles de Produccio: {reglesp}\n"
-          f"[DEBUG]: Axioma inicial: {axioma}")
+          f"[DEBUG]: Axioma inicial: {axioma}"
+          )
 
     for i in range(1, N+1):
         sentence = ""
@@ -82,10 +87,30 @@ if __name__ == '__main__':
         axioma = sentence
         print(f"[DEBUG]: Iteracio {i} | Axioma = {axioma}")
 
+    return axioma
+
+if __name__ == '__main__':
+    l_system = json_to_variable(FILESDIR + "/" + JSONFILE)
+    axioma = l_system["axioma"]
+    alfabet = l_system["alfabet"]
+    reglesp = l_system["reglesp"]
+    turtleconf = l_system["turtleconf"]
+
+    idata = read_input()
+
+    N = idata["N"]
+
+    axioma = generador(axioma, reglesp, N)
+
     print(HLINE)
     print(f"Resultat de la traducció amb {N} it.:\n"
           f"{axioma}")
     print(HLINE)
+
+    tortuga1 = tortuga(turtleconf, alfabet)
+    tortuga1.draw_lindenmayer(axioma)
+
+    input(f"{HLINE}\nPrem qualsevol tecla per sortir")
 
     sys.exit(0)
 
